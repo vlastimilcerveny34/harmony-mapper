@@ -1,5 +1,40 @@
 # Changelog
 
+## v1.4 — 2026-06-19
+
+### Guitar chord diagrams
+
+A new **🎸 Guitar** toggle (top, next to the help and theme buttons) adds a
+guitar-fretboard diagram to the chord panel, showing how the focused chord is
+played. Shapes come from the open-source [`@tombatossals/chords-db`](https://github.com/tombatossals/chords-db)
+database and cover every quality and variation the app produces. Chords with
+several voicings can be cycled with the `‹ 1/N ›` arrows. The toggle is remembered
+between sessions.
+
+- **Variation-aware:** clicking a variation chip (maj7, sus4, add9…) now also
+  redraws the diagram for that exact variation (and highlights the active chip),
+  alongside playing the sound.
+
+### Chord panel rework
+
+The chord detail panel is now **always present** instead of appearing and
+vanishing on hover:
+
+- **Default state** shows the key's tonic chord (full detail).
+- **Hover** a chord for a light preview (name, roman, notes).
+- **Click** to pin the full detail (variations, guitar diagram, relationships);
+  it stays put while you hover elsewhere. *Clear* returns to the default tonic.
+- New two-column layout: guitar diagram on the left, variations on the right,
+  outgoing relationships full-width below — saving vertical space.
+
+### Lenses moved to the circle
+
+The lens toggles are now compact colored **chips under the circle** (the thing
+they actually control), freeing the sidebar for the chord panel. Long
+descriptions moved to tooltips.
+
+---
+
 ## v1.3 — 2026-05-06
 
 ### Mode-aware functional harmony

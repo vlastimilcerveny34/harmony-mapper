@@ -44,12 +44,12 @@
 
 				<section>
 					<h3>Selecting chords</h3>
-					<p><strong>Click</strong> any chord to select it and hear it. Arrows fan out to show all chords you can move to next. <strong>Double-click</strong> to add the chord to your progression.</p>
+					<p><strong>Hover</strong> a chord for a quick preview in the chord panel. <strong>Click</strong> to pin its full detail and hear it — arrows fan out to show all chords you can move to next, and the panel stays put while you hover elsewhere. <strong>Double-click</strong> to add the chord to your progression. <strong>Clear</strong> returns the panel to the key's tonic chord.</p>
 				</section>
 
 				<section>
 					<h3>Lenses</h3>
-					<p>Lenses filter which relationships are shown as arrows:</p>
+					<p>The colored <strong>chips under the circle</strong> filter which relationships are shown as arrows:</p>
 					<ul>
 						<li><strong>Diatonic</strong> — standard movement within the key. <em>Mode-aware:</em> moves are tailored per mode (e.g. in Mixolydian, ♭VII→I is preferred; in Phrygian, ♭II→i is the typical resolution).</li>
 						<li><strong>Dominant</strong> — V7 resolving to tonic</li>
@@ -69,7 +69,12 @@
 
 				<section>
 					<h3>Chord variations</h3>
-					<p>When a chord is selected, the <strong>Variations</strong> panel offers extended versions: <em>maj7, m7, 6, add9, sus4</em> and similar. Click to preview the sound, double-click to add that exact variation to the progression.</p>
+					<p>When a chord is selected, the <strong>Variations</strong> list (next to the guitar diagram) offers extended versions: <em>maj7, m7, 6, add9, sus4</em> and similar. Click to preview the sound and update the guitar diagram to that variation; double-click to add that exact variation to the progression.</p>
+				</section>
+
+				<section>
+					<h3>Guitar chords</h3>
+					<p>Toggle the <strong>🎸 Guitar</strong> button (top, next to the help and theme buttons) to show how the chord is played on a guitar fretboard. Use the <strong>‹ 1/N ›</strong> arrows to cycle alternative voicings, and click a variation to redraw the shape for that variation. The setting is remembered between visits. Shapes come from the open-source <em>chords-db</em> database.</p>
 				</section>
 
 				<section>

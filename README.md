@@ -25,7 +25,9 @@ You can check out the music of my band Swetrik on streaming platforms or here: w
   * *Modal interchange* — chords borrowed from the parallel mode
   * *Chromatic mediant* — same-quality chords ±M3/±m3
   * *Modal cadence* — the defining cadence of the current mode (e.g. ♭VII→I in Mixolydian, ♭II→i in Phrygian)
-* **Chord Variations:** Extend any chord with maj7, m7, 6, add9, sus4, 9th, etc., and add the exact variation to your progression.
+* **Chord Variations:** Extend any chord with maj7, m7, 6, add9, sus4, 9th, etc., and add the exact variation to your progression. Clicking a variation also updates the guitar diagram (see below).
+* **Guitar Chord Diagrams:** Toggle the **🎸 Guitar** button to show how the focused chord is played on a guitar fretboard, with multiple voicings to cycle through. Shapes come from the open-source [`@tombatossals/chords-db`](https://github.com/tombatossals/chords-db) database.
+* **Always-on Chord Panel:** Hover a chord for a quick preview, click to pin its full detail (notes, variations, guitar shape, outgoing relationships). With nothing selected it shows the key's tonic chord.
 * **Bridge Function:**
   * *Between keys* — pivot chords, direct dominants, secondary dominants, chromatic mediants, and multi-step paths via intermediate keys
   * *Between chords* — ranked harmonic paths using the active lenses with voice-leading scoring
@@ -33,11 +35,20 @@ You can check out the music of my band Swetrik on streaming platforms or here: w
 * **Progression Builder:** Click chords to build your progression, listen to it in the browser (Salamander Grand Piano samples), auto-decorate with extended chords (`+ COLOR`), and export as a MIDI file.
 * **Voice-leading hint:** Toggle voice-leading data on outgoing relationships — common tones (♢) and total half-step movement (½) — to find the smoothest chord transitions.
 
+## Built with
+* **[SvelteKit](https://svelte.dev/)** + **[Vite](https://vite.dev/)** — app framework and build tooling
+* **[@tonaljs/tonal](https://github.com/tonaljs/tonal)** — music theory (keys, scales, note spelling)
+* **[Tone.js](https://tonejs.github.io/)** — in-browser audio playback (Salamander Grand Piano samples)
+* **[@tombatossals/chords-db](https://github.com/tombatossals/chords-db)** — guitar chord shape database
+* **[@vercel/analytics](https://vercel.com/analytics)** — privacy-friendly usage analytics
+* **TypeScript** + **Vitest** — types and unit tests
+
 ## How to run locally
-If you want to run this project on your own computer:
+Requires [Node.js](https://nodejs.org/) (LTS recommended). If you want to run this project on your own computer:
 1. Clone the repository: `git clone https://github.com/vlastimilcerveny34/harmony-mapper.git`
 2. Install dependencies: `npm install` *(or `yarn install`)*
 3. Start the local server: `npm run dev` *(or `npm start`)*
+4. Run the tests (optional): `npm run test`
 
 ## Contributing
 Since I am not a developer, the code might not be perfectly optimized. If you are a developer and see room for improvement (refactoring, performance, new features), feel free to open an Issue or submit a Pull Request! 

@@ -42,6 +42,27 @@ export const modulationTarget = writable<ModulationTarget | null>(null);
 // Toggle: show voice-leading info on hover/select in ChordInfo
 export const showVoiceLeading = writable<boolean>(false);
 
+// Persisted boolean toggle backed by localStorage (safe on SSR — reads lazily on client).
+function persistedBool(key: string, initial: boolean) {
+	const store = writable<boolean>(initial);
+	if (typeof localStorage !== 'undefined') {
+		const saved = localStorage.getItem(key);
+		if (saved !== null) store.set(saved === '1');
+	}
+	const persist = (v: boolean) => {
+		if (typeof localStorage !== 'undefined') localStorage.setItem(key, v ? '1' : '0');
+		return v;
+	};
+	return {
+		subscribe: store.subscribe,
+		set: (v: boolean) => store.set(persist(v)),
+		update: (fn: (v: boolean) => boolean) => store.update(v => persist(fn(v))),
+	};
+}
+
+// Toggle: show a guitar chord diagram for the focused chord in ChordInfo
+export const showGuitar = persistedBool('hm-show-guitar', false);
+
 // Highlighted modulation path in CircleGraph (set when user clicks a multi-step path)
 export interface PathChord { pc: number; quality: Quality; label: string; }
 export const selectedModulationPath = writable<PathChord[] | null>(null);

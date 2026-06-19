@@ -1,24 +1,20 @@
 <script lang="ts">
 	import CircleGraph from '$lib/components/CircleGraph.svelte';
-	import LensControls from '$lib/components/LensControls.svelte';
+	import LensChips from '$lib/components/LensChips.svelte';
 	import ChordInfo from '$lib/components/ChordInfo.svelte';
 	import ProgressionBuilder from '$lib/components/ProgressionBuilder.svelte';
 	import Bridge from '$lib/components/Bridge.svelte';
 	import PresetLibrary from '$lib/components/PresetLibrary.svelte';
-	import { tonicPc, modeName, diatonicSet, selectedChord, hoveredChord } from '$lib/stores/session.js';
+	import { tonicPc, modeName, diatonicSet } from '$lib/stores/session.js';
 	import { canonicalChordLabel } from '$lib/theory/chords.js';
 	import { MODES, MODE_NAMES } from '$lib/theory/modes.js';
 	import { audioReady, audioLoading } from '$lib/audio/synth.js';
 	import HelpModal from '$lib/components/HelpModal.svelte';
 	import { NOTE_NAMES_DISPLAY as NOTE_NAMES } from '$lib/theory/noteNames.js';
-	import { theme } from '$lib/stores/session.js';
+	import { theme, showGuitar } from '$lib/stores/session.js';
 
 	let showHelp = $state(false);
 
-	let circleGraph: { arrows: () => ReturnType<typeof import('$lib/theory/relationships.js').outgoingRelationships> } | undefined;
-
-	const arrows = $derived(circleGraph?.arrows() ?? []);
-	const focusChord = $derived($selectedChord ?? $hoveredChord);
 </script>
 
 <div class="page">
@@ -44,21 +40,20 @@
 							{/each}
 						</select>
 					</label>
-					<span class="version">v1.3 · beta</span>
+					<span class="version">v1.4 · beta</span>
 				</div>
 			</div>
-			<p class="subtitle">Click any chord to see where it can lead &nbsp;&nbsp;&nbsp;<button class="btn-help" onclick={() => showHelp = true} title="How to use">?</button> <button class="btn-help btn-theme" onclick={() => theme.toggle()} title="{$theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}">{$theme === 'dark' ? '☀' : '◑'}</button></p>
+			<p class="subtitle">Click any chord to see where it can lead &nbsp;&nbsp;&nbsp;<button class="btn-help" onclick={() => showHelp = true} title="How to use">?</button> <button class="btn-help btn-theme" onclick={() => theme.toggle()} title="{$theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}">{$theme === 'dark' ? '☀' : '◑'}</button> <button class="btn-guitar" class:is-active={$showGuitar} onclick={() => showGuitar.update(v => !v)} title="Show guitar chord diagrams in the chord panel">🎸 Guitar</button></p>
 		</header>
 
 		<div class="main-grid">
 			<div class="graph-col">
-				<CircleGraph bind:this={circleGraph} />
+				<CircleGraph />
+				<LensChips />
 			</div>
 
 			<aside class="sidebar">
-				<LensControls />
-
-				<ChordInfo {arrows} />
+				<ChordInfo />
 
 				<Bridge />
 
@@ -118,7 +113,7 @@
 	.main-grid {
 		display: grid; grid-template-columns: 1fr 340px; gap: 24px; align-items: start;
 	}
-	.graph-col { display: flex; justify-content: center; }
+	.graph-col { display: flex; flex-direction: column; align-items: center; }
 	.sidebar { display: flex; flex-direction: column; gap: 20px; }
 
 	.panel {
@@ -142,6 +137,18 @@
 	}
 	.btn-help:hover { border-color: var(--accent); color: var(--accent); }
 	.btn-theme { font-size: 1rem; }
+	.btn-guitar {
+		height: 28px; padding: 0 12px; border-radius: 14px;
+		background: transparent; border: 1px solid var(--border-3);
+		color: var(--text-3); font-size: 0.78rem; cursor: pointer;
+		font-family: 'Outfit', sans-serif; line-height: 1;
+		vertical-align: middle;
+	}
+	.btn-guitar:hover { border-color: var(--accent); color: var(--accent); }
+	.btn-guitar.is-active {
+		border-color: var(--accent); color: var(--accent);
+		background: color-mix(in srgb, var(--accent) 14%, transparent);
+	}
 
 	@media (max-width: 900px) {
 		.main-grid { grid-template-columns: 1fr; }
