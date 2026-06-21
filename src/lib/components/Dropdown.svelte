@@ -32,6 +32,7 @@
 	let triggerBtn = $state<HTMLButtonElement>();
 	let typeBuffer = '';
 	let typeTimer: ReturnType<typeof setTimeout> | undefined;
+	let panelMaxH = $state('');
 
 	const flat = $derived(groups ? groups.flatMap(g => g.options) : (options ?? []));
 	const selectedLabel = $derived(flat.find(o => o.value === value)?.label ?? placeholder);
@@ -39,6 +40,12 @@
 	function openMenu() {
 		const sel = flat.findIndex(o => o.value === value);
 		activeIndex = sel >= 0 ? sel : 0;
+		// Show as much of the list as fits below the trigger; only the leftover
+		// (e.g. the long Preset list, or a trigger near the page bottom) scrolls.
+		if (triggerBtn) {
+			const space = window.innerHeight - triggerBtn.getBoundingClientRect().bottom - 12;
+			panelMaxH = `${Math.max(160, space)}px`;
+		}
 		open = true;
 		queueMicrotask(() => { panel?.focus(); scrollActiveIntoView(); });
 	}
@@ -118,6 +125,7 @@
 		<div
 			class="dd-panel"
 			class:align-right={align === 'right'}
+			style:max-height={panelMaxH}
 			bind:this={panel}
 			role="listbox"
 			aria-label={ariaLabel}
@@ -180,7 +188,9 @@
 		position: absolute; top: calc(100% + 6px); left: 0; z-index: 40;
 		display: flex; flex-direction: column; gap: 2px;
 		width: var(--dd-w); max-width: calc(100vw - 24px);
-		max-height: 60vh; overflow-y: auto;
+		/* Fallback cap (raised so 12 tonics fit); JS sets a precise per-open
+		   value = space below the trigger. overflow-y is the safety scroll. */
+		max-height: 80vh; overflow-y: auto;
 		padding: 6px;
 		background: var(--surface-4); border: 1px solid var(--border-3);
 		border-radius: 4px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
