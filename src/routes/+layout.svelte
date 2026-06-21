@@ -3,6 +3,20 @@
 	import { injectAnalytics } from '@vercel/analytics/sveltekit';
 	import { theme } from '$lib/stores/session.js';
 
+	// Self-hosted fonts (same families/weights formerly loaded from Google Fonts —
+	// removes Google from the runtime trust boundary, no visitor-IP leak / GDPR).
+	import '@fontsource/crimson-pro/300.css';
+	import '@fontsource/crimson-pro/400.css';
+	import '@fontsource/crimson-pro/400-italic.css';
+	import '@fontsource/crimson-pro/500.css';
+	import '@fontsource/crimson-pro/600.css';
+	import '@fontsource/outfit/300.css';
+	import '@fontsource/outfit/400.css';
+	import '@fontsource/outfit/500.css';
+	import '@fontsource/outfit/600.css';
+	import '@fontsource/jetbrains-mono/400.css';
+	import '@fontsource/jetbrains-mono/500.css';
+
 	injectAnalytics({ mode: dev ? 'development' : 'production' });
 
 	let { children } = $props();
@@ -10,12 +24,6 @@
 	$effect(() => { theme.init(); });
 	$effect(() => { document.documentElement.dataset.theme = $theme; });
 </script>
-
-<svelte:head>
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-	<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-</svelte:head>
 
 {@render children()}
 

@@ -25,6 +25,19 @@ The whole top bar was reorganized for a cleaner, more discoverable layout:
   menus opening **off-screen on mobile** — they now anchor on-screen and fit
   the viewport.
 
+### Security & privacy hardening
+
+- **Self-hosted fonts.** The three web fonts (Crimson Pro, Outfit, JetBrains
+  Mono) are now bundled via `@fontsource` instead of loaded from Google Fonts —
+  no visitor IP leaks to Google (GDPR), no third-party origin in the runtime
+  trust boundary, identical rendering.
+- **Content-Security-Policy** added via `kit.csp` (SvelteKit nonces its own
+  inline scripts; the app.html theme-init script is allow-listed by hash; Tone.js
+  blob: worker and inlined data: fonts are scoped). Plus standard security
+  headers via `hooks.server.ts`: `X-Content-Type-Options`, `Referrer-Policy`,
+  `X-Frame-Options: DENY`, `Permissions-Policy`. Verified clean (no violations)
+  against a production build.
+
 ### Guitar diagrams on by default
 
 First-time visitors now see the guitar fretboard diagram straight away — the
