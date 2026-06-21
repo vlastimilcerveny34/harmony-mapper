@@ -48,6 +48,12 @@
 				</section>
 
 				<section>
+					<h3>Tonic &amp; Mode</h3>
+					<p>Use the dropdowns in the top right to set the key and mode. The circle updates instantly — diatonic chords light up for the selected key. The mode controls which 7-chord set counts as diatonic <em>and</em> which functional moves the Diatonic lens highlights (each of the 7 modes has its own move-strength table). Modulation and borrowing are computed against the parallel mode.</p>
+					<p class="hint-tip">Tip: in modal keys, the tonic chord may be minor — in C Phrygian for example, the tonic chord is <strong>Cm</strong> (sitting on the outer ring of the E♭ spoke), not C major. Look for the lit minor nodes on the outer ring.</p>
+				</section>
+
+				<section>
 					<h3>Lenses</h3>
 					<p>Open the <strong>Lenses dropdown</strong> (top right, next to Mode) to choose which relationships are shown as arrows. You can enable several at once — the menu stays open until you click away. Each option filters a relationship type:</p>
 					<ul>
@@ -59,12 +65,6 @@
 						<li><strong>Chromatic mediant</strong> — same-quality chords a third away</li>
 						<li><strong>Modal cadence</strong> <span style="color:#c4a04a">●</span> — the <em>defining</em> cadence of the current mode, highlighted as a separate arrow type. Examples: IV→I (Ionian/plagal), ♭VII→I (Mixolydian), ♭II→i (Phrygian), II→I (Lydian), ♭VII→i + iv→i (Aeolian/Dorian). Use this to learn what makes each mode sound like itself.</li>
 					</ul>
-				</section>
-
-				<section>
-					<h3>Tonic &amp; Mode</h3>
-					<p>Use the dropdowns in the top right to set the key and mode. The circle updates instantly — diatonic chords light up for the selected key. The mode controls which 7-chord set counts as diatonic <em>and</em> which functional moves the Diatonic lens highlights (each of the 7 modes has its own move-strength table). Modulation and borrowing are computed against the parallel mode.</p>
-					<p class="hint-tip">Tip: in modal keys, the tonic chord may be minor — in C Phrygian for example, the tonic chord is <strong>Cm</strong> (sitting on the outer ring of the E♭ spoke), not C major. Look for the lit minor nodes on the outer ring.</p>
 				</section>
 
 				<section>

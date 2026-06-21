@@ -18,6 +18,12 @@ The whole top bar was reorganized for a cleaner, more discoverable layout:
   🎸 Guitar buttons on a second row beneath it.
 - **Version moved to the footer** (bottom right): *Harmony Mapper v1.5 · beta*
   above the copyright line.
+- **All dropdowns unified.** Every dropdown in the app (Tonic, Mode, Lenses,
+  Preset Library, and the Bridge inputs) now uses one shared custom component
+  with identical styling and keyboard support (↑/↓, Home/End, Enter, Esc,
+  type-ahead), instead of a mix of native `<select>`s. This also fixes the
+  menus opening **off-screen on mobile** — they now anchor on-screen and fit
+  the viewport.
 
 ### Guitar diagrams on by default
 

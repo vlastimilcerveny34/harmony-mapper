@@ -3,6 +3,7 @@
 	import { PRESETS, applyPreset, type PresetCategory } from '$lib/theory/presets.js';
 	import { canonicalChordLabel } from '$lib/theory/chords.js';
 	import { playChord } from '$lib/audio/synth.js';
+	import Dropdown from '$lib/components/Dropdown.svelte';
 
 	const CATEGORY_LABELS: Record<PresetCategory, string> = {
 		pop:        'Pop / Rock / J-pop',
@@ -17,6 +18,13 @@
 	let selectedId = $state<string>(PRESETS.find(p => p.category === 'pop')?.id ?? PRESETS[0].id);
 
 	const preset = $derived(PRESETS.find(p => p.id === selectedId)!);
+
+	const presetGroups = CATEGORY_ORDER
+		.map(cat => ({
+			label: CATEGORY_LABELS[cat],
+			options: PRESETS.filter(p => p.category === cat).map(p => ({ value: p.id, label: p.name })),
+		}))
+		.filter(g => g.options.length > 0);
 
 	const appliedSteps = $derived.by(() => {
 		const steps = applyPreset(preset, $tonicPc);
@@ -43,18 +51,9 @@
 <div class="panel">
 	<h3 class="panel-title">Preset Library</h3>
 
-	<select class="preset-select" bind:value={selectedId}>
-		{#each CATEGORY_ORDER as cat}
-			{@const list = PRESETS.filter(p => p.category === cat)}
-			{#if list.length > 0}
-				<optgroup label={CATEGORY_LABELS[cat]}>
-					{#each list as p}
-						<option value={p.id}>{p.name}</option>
-					{/each}
-				</optgroup>
-			{/if}
-		{/each}
-	</select>
+	<div class="preset-select">
+		<Dropdown bind:value={selectedId} groups={presetGroups} width={300} ariaLabel="Preset" />
+	</div>
 
 	<div class="path-card" role="button" tabindex="0"
 		onclick={loadPreset}
@@ -90,12 +89,8 @@
 		color: var(--accent); margin: 0 0 10px; font-weight: 500;
 	}
 
-	.preset-select {
-		width: 100%; background: var(--surface-2); border: 1px solid var(--border-3);
-		color: var(--text-1); padding: 5px 8px; border-radius: 3px;
-		font-size: 0.85rem; font-family: inherit; margin-bottom: 10px; cursor: pointer;
-	}
-	.preset-select:focus { outline: 1px solid var(--accent); }
+	.preset-select { margin-bottom: 10px; }
+	.preset-select :global(.dd) { display: block; width: 100%; }
 
 	.path-card {
 		background: var(--surface-1); border: 1px solid var(--border-2); border-radius: 4px;

@@ -6,6 +6,7 @@
 	import { playChord } from '$lib/audio/synth.js';
 	import { NOTE_NAMES_DISPLAY } from '$lib/theory/noteNames.js';
 	import type { Quality, ModeName } from '$lib/theory/modes.js';
+	import Dropdown from '$lib/components/Dropdown.svelte';
 
 	type Mode = 'keys' | 'chords';
 	let mode: Mode = $state('keys');
@@ -76,6 +77,8 @@
 		{ value: '7', label: 'dom7' },
 		{ value: 'd', label: 'dim' },
 	];
+	const pcOptions = Array.from({ length: 12 }, (_, i) => ({ value: i, label: NOTE_NAMES_DISPLAY[i] }));
+	const modeOptions = MODE_NAMES.map(k => ({ value: k, label: MODES[k].label }));
 	const CHARACTER_COLORS: Record<string, string> = {
 		smooth:    '#7aa9c9',
 		classical: '#d4a574',
@@ -133,22 +136,14 @@
 	{#if mode === 'keys'}
 		<!-- ─── KEYS MODE ────────────────────────────────────────────────────── -->
 		<div class="inputs-row">
-			<label class="control-group">
+			<div class="control-group">
 				<span class="control-label">Target tonic</span>
-				<select bind:value={targetPc}>
-					{#each Array.from({ length: 12 }, (_, i) => i) as pc}
-						<option value={pc}>{NOTE_NAMES_DISPLAY[pc]}</option>
-					{/each}
-				</select>
-			</label>
-			<label class="control-group">
+				<Dropdown bind:value={targetPc} options={pcOptions} width={110} ariaLabel="Target tonic" />
+			</div>
+			<div class="control-group">
 				<span class="control-label">Mode</span>
-				<select bind:value={targetModeName}>
-					{#each MODE_NAMES as key}
-						<option value={key}>{MODES[key].label}</option>
-					{/each}
-				</select>
-			</label>
+				<Dropdown bind:value={targetModeName} options={modeOptions} width={170} ariaLabel="Target mode" />
+			</div>
 		</div>
 
 		<div class="action-row">
@@ -229,32 +224,16 @@
 			<div class="endpoint">
 				<span class="control-label">From</span>
 				<div class="endpoint-fields">
-					<select bind:value={fromPc}>
-						{#each Array.from({ length: 12 }, (_, i) => i) as pc}
-							<option value={pc}>{NOTE_NAMES_DISPLAY[pc]}</option>
-						{/each}
-					</select>
-					<select bind:value={fromQ}>
-						{#each QUALITIES as q}
-							<option value={q.value}>{q.label}</option>
-						{/each}
-					</select>
+					<Dropdown bind:value={fromPc} options={pcOptions} width={100} ariaLabel="From root" />
+					<Dropdown bind:value={fromQ} options={QUALITIES} width={120} ariaLabel="From quality" />
 				</div>
 			</div>
 			<span class="arr-big">→</span>
 			<div class="endpoint">
 				<span class="control-label">To</span>
 				<div class="endpoint-fields">
-					<select bind:value={toPc}>
-						{#each Array.from({ length: 12 }, (_, i) => i) as pc}
-							<option value={pc}>{NOTE_NAMES_DISPLAY[pc]}</option>
-						{/each}
-					</select>
-					<select bind:value={toQ}>
-						{#each QUALITIES as q}
-							<option value={q.value}>{q.label}</option>
-						{/each}
-					</select>
+					<Dropdown bind:value={toPc} options={pcOptions} width={100} ariaLabel="To root" />
+					<Dropdown bind:value={toQ} options={QUALITIES} width={120} ariaLabel="To quality" />
 				</div>
 			</div>
 		</div>
@@ -326,11 +305,6 @@
 	.endpoint-fields { display: flex; gap: 4px; }
 	.control-label { color: var(--text-3); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.65rem; }
 	.arr-big { color: var(--text-4); font-size: 1.2rem; padding-bottom: 4px; }
-
-	select {
-		background: var(--surface-2); border: 1px solid var(--border-3); color: var(--text-1);
-		padding: 4px 6px; border-radius: 3px; font-size: 0.85rem; font-family: inherit;
-	}
 
 	.action-row { display: flex; gap: 8px; margin-bottom: 14px; }
 	.btn-search, .btn-clear {

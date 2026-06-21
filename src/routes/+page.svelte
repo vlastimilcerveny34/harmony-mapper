@@ -1,6 +1,7 @@
 <script lang="ts">
 	import CircleGraph from '$lib/components/CircleGraph.svelte';
 	import LensChips from '$lib/components/LensChips.svelte';
+	import Dropdown from '$lib/components/Dropdown.svelte';
 	import ChordInfo from '$lib/components/ChordInfo.svelte';
 	import ProgressionBuilder from '$lib/components/ProgressionBuilder.svelte';
 	import Bridge from '$lib/components/Bridge.svelte';
@@ -15,6 +16,9 @@
 
 	let showHelp = $state(false);
 
+	const tonicOptions = Array.from({ length: 12 }, (_, i) => ({ value: i, label: NOTE_NAMES[i] }));
+	const modeOptions = MODE_NAMES.map(k => ({ value: k, label: MODES[k].label }));
+
 </script>
 
 <div class="page">
@@ -27,22 +31,16 @@
 			</div>
 			<div class="header-right">
 				<div class="controls">
-					<label class="control-group">
+					<div class="control-group">
 						<span class="control-label">Tonic</span>
-						<select value={$tonicPc} onchange={(e) => tonicPc.set(parseInt((e.target as HTMLSelectElement).value))}>
-							{#each Array.from({ length: 12 }, (_, i) => i) as pc}
-								<option value={pc}>{NOTE_NAMES[pc]}</option>
-							{/each}
-						</select>
-					</label>
-					<label class="control-group">
+						<Dropdown value={$tonicPc} options={tonicOptions} width={120} ariaLabel="Tonic"
+							onchange={(v) => tonicPc.set(v as number)} />
+					</div>
+					<div class="control-group">
 						<span class="control-label">Mode</span>
-						<select value={$modeName} onchange={(e) => modeName.set((e.target as HTMLSelectElement).value as typeof $modeName)}>
-							{#each MODE_NAMES as key}
-								<option value={key}>{MODES[key].label}</option>
-							{/each}
-						</select>
-					</label>
+						<Dropdown value={$modeName} options={modeOptions} width={180} ariaLabel="Mode"
+							onchange={(v) => modeName.set(v as typeof $modeName)} />
+					</div>
 					<LensChips />
 				</div>
 				<div class="header-actions">

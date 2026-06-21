@@ -96,9 +96,15 @@
 	.lens-panel {
 		position: absolute; top: calc(100% + 6px); right: 0; z-index: 30;
 		display: flex; flex-direction: column; gap: 2px;
-		width: 340px; padding: 6px;
+		width: 340px; max-width: calc(100vw - 24px);
+		max-height: 60vh; overflow-y: auto; padding: 6px;
 		background: var(--surface-4); border: 1px solid var(--border-3);
 		border-radius: 4px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+	}
+
+	/* Mobile: anchor left & fit the viewport so the menu stays fully on-screen. */
+	@media (max-width: 760px) {
+		.lens-panel { left: 0; right: auto; width: min(340px, calc(100vw - 24px)); }
 	}
 	.lens-row {
 		display: grid; grid-template-columns: 12px 108px 1fr;
