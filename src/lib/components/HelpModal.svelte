@@ -49,7 +49,7 @@
 
 				<section>
 					<h3>Lenses</h3>
-					<p>The colored <strong>chips under the circle</strong> filter which relationships are shown as arrows:</p>
+					<p>Open the <strong>Lenses dropdown</strong> (top right, next to Mode) to choose which relationships are shown as arrows. You can enable several at once — the menu stays open until you click away. Each option filters a relationship type:</p>
 					<ul>
 						<li><strong>Diatonic</strong> — standard movement within the key. <em>Mode-aware:</em> moves are tailored per mode (e.g. in Mixolydian, ♭VII→I is preferred; in Phrygian, ♭II→i is the typical resolution).</li>
 						<li><strong>Dominant</strong> — V7 resolving to tonic</li>
@@ -74,7 +74,7 @@
 
 				<section>
 					<h3>Guitar chords</h3>
-					<p>Toggle the <strong>🎸 Guitar</strong> button (top, next to the help and theme buttons) to show how the chord is played on a guitar fretboard. Use the <strong>‹ 1/N ›</strong> arrows to cycle alternative voicings, and click a variation to redraw the shape for that variation. The setting is remembered between visits. Shapes come from the open-source <em>chords-db</em> database.</p>
+					<p>Guitar diagrams are <strong>shown by default</strong> — the <strong>🎸 Guitar</strong> button (top right, next to the help and theme buttons) toggles them off and on. They show how the chord is played on a guitar fretboard. Use the <strong>‹ 1/N ›</strong> arrows to cycle alternative voicings, and click a variation to redraw the shape for that variation. The setting is remembered between visits. Shapes come from the open-source <em>chords-db</em> database.</p>
 				</section>
 
 				<section>

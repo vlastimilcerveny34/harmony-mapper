@@ -1,5 +1,31 @@
 # Changelog
 
+## v1.5 — 2026-06-21
+
+### Header & lenses UI rework
+
+The whole top bar was reorganized for a cleaner, more discoverable layout:
+
+- **Lenses are now a dropdown** in the header (top right, next to Tonic/Mode)
+  instead of chips under the circle. The trigger shows the colored dots of the
+  active lenses plus a count; opening it reveals all seven options as a labeled
+  list (toggle + name + short description), so it's clear what each one does
+  without hovering. It's multi-select — the menu stays open while you pick and
+  closes on an outside click (including clicking a chord) or **Esc**. Styling now
+  matches the Tonic/Mode selects exactly.
+- **Controls regrouped:** the header is a two-column layout — logo + subtitle on
+  the left, and on the right the Tonic/Mode/Lenses row with the help, theme, and
+  🎸 Guitar buttons on a second row beneath it.
+- **Version moved to the footer** (bottom right): *Harmony Mapper v1.5 · beta*
+  above the copyright line.
+
+### Guitar diagrams on by default
+
+First-time visitors now see the guitar fretboard diagram straight away — the
+**🎸 Guitar** toggle defaults to on (existing visitors keep their saved choice).
+
+---
+
 ## v1.4 — 2026-06-19
 
 ### Guitar chord diagrams

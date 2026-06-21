@@ -21,8 +21,11 @@
 	<div class="content">
 
 		<header class="header">
-			<div class="header-top">
+			<div class="header-left">
 				<img src={$theme === 'dark' ? '/logo-white.png' : '/logo.png'} alt="Harmony Mapper" class="logo" />
+				<p class="subtitle">Click any chord to see where it can lead</p>
+			</div>
+			<div class="header-right">
 				<div class="controls">
 					<label class="control-group">
 						<span class="control-label">Tonic</span>
@@ -40,16 +43,19 @@
 							{/each}
 						</select>
 					</label>
-					<span class="version">v1.4 · beta</span>
+					<LensChips />
+				</div>
+				<div class="header-actions">
+					<button class="btn-help" onclick={() => showHelp = true} title="How to use">?</button>
+					<button class="btn-help btn-theme" onclick={() => theme.toggle()} title="{$theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}">{$theme === 'dark' ? '☀' : '◑'}</button>
+					<button class="btn-guitar" class:is-active={$showGuitar} onclick={() => showGuitar.update(v => !v)} title="Show guitar chord diagrams in the chord panel">🎸 Guitar</button>
 				</div>
 			</div>
-			<p class="subtitle">Click any chord to see where it can lead &nbsp;&nbsp;&nbsp;<button class="btn-help" onclick={() => showHelp = true} title="How to use">?</button> <button class="btn-help btn-theme" onclick={() => theme.toggle()} title="{$theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}">{$theme === 'dark' ? '☀' : '◑'}</button> <button class="btn-guitar" class:is-active={$showGuitar} onclick={() => showGuitar.update(v => !v)} title="Show guitar chord diagrams in the chord panel">🎸 Guitar</button></p>
 		</header>
 
 		<div class="main-grid">
 			<div class="graph-col">
 				<CircleGraph />
-				<LensChips />
 			</div>
 
 			<aside class="sidebar">
@@ -77,7 +83,8 @@
 				· diatonic: {$diatonicSet.map(d => canonicalChordLabel(d.pc, d.quality)).join(' — ')}
 			</span>
 				<span class="footer-copy">
-					© 2026 <a href="mailto:vlastimilcerveny34@gmail.com" class="footer-link">Vlastimil Červený</a>
+					<span class="footer-version">Harmony Mapper v1.5 · beta</span>
+					<span>© 2026 <a href="mailto:vlastimilcerveny34@gmail.com" class="footer-link">Vlastimil Červený</a></span>
 				</span>
 			</footer>
 	</div>
@@ -91,20 +98,18 @@
 	.content { max-width: 1280px; margin: 0 auto; padding: 0 24px 96px; }
 
 	.header {
-		display: flex; flex-direction: column; gap: 0;
-		margin-bottom: 4px; padding-bottom: 0;
+		display: flex; align-items: flex-start; justify-content: space-between;
+		gap: 24px; margin-bottom: 4px; padding-bottom: 0;
 	}
-	.header-top { display: flex; align-items: center; justify-content: space-between; }
+	.header-left { display: flex; flex-direction: column; align-items: flex-start; gap: 0; min-width: 0; }
+	.header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; padding-top: 22px; }
+	.header-actions { display: flex; align-items: center; gap: 8px; }
 	.logo { height: 102px; width: auto; display: block; margin-left: 3px; margin-bottom: -5px; }
-	.version {
-		font-size: 0.75rem; color: var(--text-3);
-		letter-spacing: 0.12em; text-transform: uppercase;
-	}
 	.subtitle {
 		font-family: 'Crimson Pro', serif; font-style: italic;
 		color: var(--text-3); font-size: 1rem;
 	}
-	.controls { display: flex; align-items: center; gap: 16px; margin-left: auto; padding-left: 24px; }
+	.controls { display: flex; align-items: center; gap: 16px; }
 	.control-group { display: flex; align-items: center; gap: 8px; }
 	.control-label {
 		color: var(--text-3); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.7rem;
@@ -126,7 +131,11 @@
 		display: flex; gap: 16px; flex-wrap: wrap;
 	}
 	.footer-key { color: var(--text-4); }
-	.footer-copy { margin-left: auto; color: var(--text-5); }
+	.footer-copy {
+		margin-left: auto; color: var(--text-5);
+		display: flex; flex-direction: column; gap: 2px; text-align: right;
+	}
+	.footer-version { color: var(--text-4); letter-spacing: 0.04em; }
 	.footer-link { color: var(--text-4); text-decoration: none; }
 	.footer-link:hover { color: var(--accent); }
 	.btn-help {
@@ -154,11 +163,15 @@
 		.main-grid { grid-template-columns: 1fr; }
 	}
 
+	@media (max-width: 760px) {
+		.header { flex-direction: column; align-items: stretch; gap: 12px; }
+		.header-right { align-items: flex-start; padding-top: 0; }
+	}
+
 	@media (max-width: 600px) {
 		.header { margin-top: 5px; }
-		.header-top { align-items: flex-start; }
 		.logo { height: 70px; margin-left: 3px; margin-bottom: -4px; }
-		.controls { gap: 10px; flex-wrap: wrap; padding-left: 53px; }
+		.controls { gap: 10px; flex-wrap: wrap; }
 		.content { padding: 0 8px 96px; }
 		.graph-col { margin: 0 -8px; }
 	}

@@ -17,7 +17,7 @@ You can check out the music of my band Swetrik on streaming platforms or here: w
 
 ## Features
 * **Interactive Chord Circle:** Visualize chords based on your chosen Tonic and Mode (Ionian, Dorian, Phrygian, Lydian, Mixolydian, Aeolian, Locrian). Diatonic motion is **mode-aware** — each mode has its own functional-move logic.
-* **Harmonic Lenses:** Toggle different relationship types as colored arrows on the circle:
+* **Harmonic Lenses:** A dropdown in the header (next to Tonic/Mode) toggles different relationship types as colored arrows on the circle. It's multi-select — enable as many as you like:
   * *Diatonic motion* — functional moves within the key
   * *Dominant resolution* — V7 → I (and V → i)
   * *Secondary dominants* — V7/ii, V7/iii, V7/IV…
@@ -26,7 +26,7 @@ You can check out the music of my band Swetrik on streaming platforms or here: w
   * *Chromatic mediant* — same-quality chords ±M3/±m3
   * *Modal cadence* — the defining cadence of the current mode (e.g. ♭VII→I in Mixolydian, ♭II→i in Phrygian)
 * **Chord Variations:** Extend any chord with maj7, m7, 6, add9, sus4, 9th, etc., and add the exact variation to your progression. Clicking a variation also updates the guitar diagram (see below).
-* **Guitar Chord Diagrams:** Toggle the **🎸 Guitar** button to show how the focused chord is played on a guitar fretboard, with multiple voicings to cycle through. Shapes come from the open-source [`@tombatossals/chords-db`](https://github.com/tombatossals/chords-db) database.
+* **Guitar Chord Diagrams:** Shown by default — the **🎸 Guitar** button toggles how the focused chord is played on a guitar fretboard, with multiple voicings to cycle through. Shapes come from the open-source [`@tombatossals/chords-db`](https://github.com/tombatossals/chords-db) database.
 * **Always-on Chord Panel:** Hover a chord for a quick preview, click to pin its full detail (notes, variations, guitar shape, outgoing relationships). With nothing selected it shows the key's tonic chord.
 * **Bridge Function:**
   * *Between keys* — pivot chords, direct dominants, secondary dominants, chromatic mediants, and multi-step paths via intermediate keys

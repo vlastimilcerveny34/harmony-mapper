@@ -61,7 +61,7 @@ function persistedBool(key: string, initial: boolean) {
 }
 
 // Toggle: show a guitar chord diagram for the focused chord in ChordInfo
-export const showGuitar = persistedBool('hm-show-guitar', false);
+export const showGuitar = persistedBool('hm-show-guitar', true);
 
 // Highlighted modulation path in CircleGraph (set when user clicks a multi-step path)
 export interface PathChord { pc: number; quality: Quality; label: string; }
