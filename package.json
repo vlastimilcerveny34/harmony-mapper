@@ -32,6 +32,7 @@
 		"@tombatossals/chords-db": "^0.5.1",
 		"@tonaljs/tonal": "^4.10.0",
 		"@vercel/analytics": "^2.0.1",
+		"@vercel/speed-insights": "^2.0.0",
 		"tone": "^15.1.22"
 	}
 }

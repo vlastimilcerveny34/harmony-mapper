@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
 	import { injectAnalytics } from '@vercel/analytics/sveltekit';
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import { theme } from '$lib/stores/session.js';
 
 	// Self-hosted fonts (same families/weights formerly loaded from Google Fonts —
@@ -18,6 +19,7 @@
 	import '@fontsource/jetbrains-mono/500.css';
 
 	injectAnalytics({ mode: dev ? 'development' : 'production' });
+	injectSpeedInsights();
 
 	let { children } = $props();
 
